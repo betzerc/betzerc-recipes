@@ -8,12 +8,27 @@ Input:
   NAME: Wispr Flow
 
 Process:
-  - Processor: AppDmgExtractioner
+  - Processor: AppDmgVersioner
     Arguments:
-      dmg_path: "%pathname%"
-      unarchive_path: "%RECIPE_CACHE_DIR%/%NAME%"
+      dmg_path: "%pathname_app%"
+      
+  - Processor: PkgRootCreator
+    Arguments:
+      pkgdirs:
+        Applications: "0775"
+      pkgroot: "%RECIPE_CACHE_DIR%/%NAME%"
+
+  - Processor: Copier
+    Arguments:
+      destination_path: "%pkgroot%/Applications/Wispr Flow.app"
+      source_path: "%pathname_app%/Wispr Flow.app"
 
   - Processor: AppPkgCreator
     Arguments:
+      pkg_request:
+        chown:
+          - group: admin
+            path: Applications
+            user: root
       app_path: "%RECIPE_CACHE_DIR%/%NAME%/Wispr Flow.app"
       pkg_path: "%RECIPE_CACHE_DIR%/%NAME%-%version%.pkg"

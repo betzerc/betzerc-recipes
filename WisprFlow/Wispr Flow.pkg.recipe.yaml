@@ -10,7 +10,7 @@ Input:
 Process:
   - Processor: AppDmgVersioner
     Arguments:
-      dmg_path: "%pathname_app%"
+      dmg_path: "%pathname%"
       
   - Processor: PkgRootCreator
     Arguments:
@@ -20,8 +20,8 @@ Process:
 
   - Processor: Copier
     Arguments:
-      destination_path: "%pkgroot%/Applications/Wispr Flow.app"
-      source_path: "%pathname_app%/Wispr Flow.app"
+      destination_path: "%pkgroot%/Applications/%NAME%.app"
+      source_path: "%pathname%/*.app"
 
   - Processor: AppPkgCreator
     Arguments:

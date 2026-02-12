@@ -1,6 +1,6 @@
 Description: Downloads the latest version of Wispr Flow and creates a package.
 Identifier: com.github.betzerc-recipes.pkg.WisprFlow
-ParentRecipe: com.github.dataJAR-recipes.download.WisprFlow
+ParentRecipe: com.github.dataJAR-recipes.download.Wispr Flow
 MinimumVersion: "2.3"
 
 Input:

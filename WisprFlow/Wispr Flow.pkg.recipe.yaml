@@ -30,5 +30,5 @@ Process:
           - group: admin
             path: Applications
             user: root
-      app_path: "%RECIPE_CACHE_DIR%/%NAME%/Wispr Flow.app"
+      app_path: "%RECIPE_CACHE_DIR%/%NAME%/Applications/Wispr Flow.app"
       pkg_path: "%RECIPE_CACHE_DIR%/%NAME%-%version%.pkg"

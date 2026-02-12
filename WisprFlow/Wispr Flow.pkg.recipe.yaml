@@ -8,6 +8,11 @@ Input:
   NAME: Wispr Flow
 
 Process:
+  - Processor: AppDmgExtractioner
+    Arguments:
+      dmg_path: "%pathname%"
+      unarchive_path: "%RECIPE_CACHE_DIR%/%NAME%"
+
   - Processor: AppPkgCreator
     Arguments:
       app_path: "%RECIPE_CACHE_DIR%/%NAME%/Wispr Flow.app"

@@ -1,0 +1,11 @@
+Description: Downloads the latest version of FileZilla for Apple Silicon (ARM64) and creates a package.
+Identifier: com.github.betzerc-recipes.pkg.FileZillaARM64
+Input:
+  NAME: FileZilla
+  ARCH: arm64
+ParentRecipe: com.github.wycomco.download.FileZilla
+Process:
+  - Processor: AppPkgCreator
+    Arguments:
+      app_path: "%RECIPE_CACHE_DIR%/%NAME%/*.app"
+      pkg_path: "%RECIPE_CACHE_DIR%/%NAME%-%version%-arm64.pkg"

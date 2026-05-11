@@ -3,7 +3,7 @@ Identifier: com.github.betzerc-recipes.pkg.FileZilla
 ParentRecipe: com.github.wycomco.download.FileZilla
 MinimumVersion: "2.3"
 
-Input:
+Input: 
   NAME: FileZilla
 
 Process: 

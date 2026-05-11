@@ -7,7 +7,7 @@ Input:
   NAME: FileZilla
 
 Process: 
-- Processor: AppDmgVersioner
+  - Processor: AppDmgVersioner
     Arguments:
       dmg_path: "%pathname%"
 

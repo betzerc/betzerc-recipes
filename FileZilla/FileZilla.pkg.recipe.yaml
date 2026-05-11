@@ -7,7 +7,11 @@ Input:
   NAME: FileZilla
 
 Process: 
-- Processor: AppPkgCreator
+- Processor: AppDmgVersioner
+    Arguments:
+      dmg_path: "%pathname%"
+
+  - Processor: AppPkgCreator
     Arguments:
       app_path: "%pathname%/*.app"
       pkg_path: "%RECIPE_CACHE_DIR%/%NAME%-%version%.pkg"

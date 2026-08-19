@@ -1,26 +1,47 @@
-Description: Downloads the latest version of FileZilla and creates a package.
+Description: Downloads the latest arm64 version of FileZilla and creates a package.
 Identifier: com.github.betzerc-recipes.pkg.FileZilla
-ParentRecipe: com.github.moofit-recipes.download.FileZilla-Universal
+ParentRecipe: com.github.betzerc-recipes.download.FileZilla-arm64
 MinimumVersion: "2.3"
 
 Input: 
   NAME: FileZilla
+  URL: https://filezilla-project.org/download.php?show_all=1
+  SILICON_ARCH: arm64
 
 Process: 
-  - Processor: AppDmgVersioner
-    Arguments:
-      dmg_path: "%pathname%"
 
-  - Processor: AppPkgCreator
+  - Processor: URLTextSearcher
     Arguments:
-      app_path: "%pathname%/*.app"
-      pkg_path: "%RECIPE_CACHE_DIR%/%NAME%-%version%.pkg"
-      pkg_request:
-        bundleid: "org.filezilla-project.filezilla"
-        chown:
-          - group: admin
-            path: Applications
-            user: root
-        id: "org.filezilla-project.filezilla.pkg"
-        options: purge_ds_store
-        pkgname: "%NAME%-%version%"
+      url: "%URL%"
+      re_pattern: \"(http[s]?.*?(FileZilla_([\d.]+)_macos-%SILICON_ARCH%.*?\.tar\.bz2).*?)\"
+      request_headers:
+        user-agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 14_7_1) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.0 Safari/605.1.15
+      result_output_var_name: silicon_url
+      
+  - Processor: URLDownloader
+    Arguments:
+      url: "%silicon_url%"
+      filename: "%NAME%-%SILICON_ARCH%.app.tar.bz2"
+      download_dir: "%RECIPE_CACHE_DIR%/Downloads"
+
+  - Processor: EndOfCheckPhase
+
+  - Processor: Unarchiver
+    Arguments:
+      archive_path: "%RECIPE_CACHE_DIR%/Downloads/%NAME%-%SILICON_ARCH%.app.tar.bz2"
+      destination_path: "%RECIPE_CACHE_DIR%/Extract/%SILICON_ARCH%"
+      purge_destination: true
+
+  - Processor: CodeSignatureVerifier
+    Arguments:
+      input_path: "%RECIPE_CACHE_DIR%/Extract/%SILICON_ARCH%/%NAME%.app"
+      requirement: identifier "org.filezilla-project.filezilla" and anchor apple generic and certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = "5VPGKXL75N"
+
+
+  - Processor: PlistReader
+    Arguments:
+      info_path: "%RECIPE_CACHE_DIR%/Extract/%INTEL_ARCH%/%NAME%.app/Contents/Info.plist"
+      plist_keys:
+        CFBundleShortVersionString: version
+        CFBundleIdentifier: bundle_id
+        CFBundleName: app_name

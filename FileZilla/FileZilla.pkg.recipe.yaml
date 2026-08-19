@@ -1,6 +1,6 @@
 Description: Downloads the latest version of FileZilla and creates a package.
 Identifier: com.github.betzerc-recipes.pkg.FileZilla
-ParentRecipe: com.github.wycomco.download.FileZilla
+ParentRecipe: com.github.moofit-recipes.download.FileZilla-Universal
 MinimumVersion: "2.3"
 
 Input: 

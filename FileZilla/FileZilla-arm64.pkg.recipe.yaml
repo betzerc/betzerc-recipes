@@ -1,5 +1,5 @@
 Description: Downloads the latest arm64 version of FileZilla and creates a package.
-Identifier: com.github.betzerc-recipes.pkg.FileZilla
+Identifier: com.github.betzerc-recipes.pkg.FileZilla-arm64
 ParentRecipe: com.github.betzerc-recipes.download.FileZilla-arm64
 MinimumVersion: "2.3"
 

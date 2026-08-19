@@ -1,5 +1,5 @@
-Description: Lädt FileZilla herunter und erstellt ein installierbares macOS .pkg-Paket.
-Identifier: com.intosite.recipes.pkg.FileZilla
+Description: Downloads latest VErsion of FileZilla and creates a package
+Identifier: com.github.betzerc-recipes.pkg.FileZilla
 ParentRecipe: com.github.wycomco.download.FileZilla
 MinimumVersion: '2.0'
 

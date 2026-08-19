@@ -1,4 +1,4 @@
-Description: Downloads latest VErsion of FileZilla and creates a package
+Description: Downloads latest Version of FileZilla and creates a package
 Identifier: com.github.betzerc-recipes.pkg.FileZilla
 ParentRecipe: com.github.wycomco.download.FileZilla
 MinimumVersion: '2.0'
